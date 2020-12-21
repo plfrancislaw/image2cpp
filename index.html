@@ -284,6 +284,9 @@
 			<h2>3. Preview</h2>
 			<section class="sub-section">
 				<div id="images-canvas-container"></div>
+				<p></p>
+				<a id="download" download="myImage.jpg" href="" onclick="downloadImg(this);">Download to myImage.jpg</a>
+
 			</section>
 		</section>
 		<section class="section">
@@ -622,6 +625,9 @@
 			conversionFunction: ConversionFunctions.horizontal1bit
 		};
 
+		function downloadImg(el) {
+			el.href= document.getElementById('canvas').toDataURL("image/jpg");
+		}
 		// Variable name, when "arduino code" is required
 		var identifier = "myBitmap";
 
@@ -805,6 +811,7 @@
 		function handleTextInput(drawMode){
 
 			var canvas = document.createElement("canvas");
+			canvas.id = "canvas";
 			canvas.width = parseInt(document.getElementById("text-input-width").value);
 			canvas.height = parseInt(document.getElementById("text-input-height").value);
 			settings["screenWidth"] = canvas.width;
@@ -1143,7 +1150,7 @@
 				}
 				binString = binString.result;
 				if (binString.length == 4){
-					binString = binString + "0000";
+					binString = "0000" + binString;
 				}
 
 				// Check if pixel is white or black
@@ -1202,7 +1209,7 @@
 				}
 				binString = binString.result;
 				if (binString.length == 4){
-					binString = binString + "0000";
+					binString = "0000" + binString;
 				}
 
 				// Check if pixel is white or black
